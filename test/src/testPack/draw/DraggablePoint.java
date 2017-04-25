@@ -23,12 +23,15 @@
 *************************************************************************/
 
 
-package edu.hws.jcm.draw;
+package testPack.draw;
 
 import java.awt.*;
 import java.awt.event.*;
-import edu.hws.jcm.data.*;
-import edu.hws.jcm.awt.*;
+
+import testPack.awt.Controller;
+import testPack.data.Constant;
+import testPack.data.Value;
+
 
 /**
  * A DraggablePoint can be added to a DisplayCanvas, where it appears as a small disk, square, or

@@ -22,7 +22,7 @@
 *                                                                        *
 *************************************************************************/
 
-package edu.hws.jcm.draw;
+package testPack.draw;
 
 import edu.hws.jcm.awt.*;
 import java.util.StringTokenizer;

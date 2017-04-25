@@ -12,15 +12,27 @@
 *                                                                        *
 *************************************************************************/
 
-import edu.hws.jcm.awt.*;
-import edu.hws.jcm.data.*;
-import edu.hws.jcm.draw.*;
-import edu.hws.jcm.functions.*;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.StringTokenizer;
+
 import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.StringTokenizer;
+
+import testPack.awt.DisplayLabel;
+import testPack.awt.JCMPanel;
+import testPack.awt.VariableInput;
+import testPack.data.ParseError;
+import testPack.data.Parser;
+import testPack.functions.SummationParser;
 
 /**
  * An Evaluator applet lets the user enter the values of one or more variables,

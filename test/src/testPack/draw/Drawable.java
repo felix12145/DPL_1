@@ -23,7 +23,7 @@
 *************************************************************************/
 
 
-package edu.hws.jcm.draw;
+package testPack.draw;
 
 import java.awt.Graphics;
 
