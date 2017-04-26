@@ -23,6 +23,7 @@
 *************************************************************************/
 
 
+<<<<<<< HEAD
 package testPack.draw;
 
 import java.awt.*;
@@ -32,6 +33,14 @@ import testPack.awt.Controller;
 import testPack.data.Constant;
 import testPack.data.Value;
 
+=======
+package edu.hws.jcm.draw;
+
+import java.awt.*;
+import java.awt.event.*;
+import edu.hws.jcm.data.*;
+import edu.hws.jcm.awt.*;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 /**
  * A DraggablePoint can be added to a DisplayCanvas, where it appears as a small disk, square, or

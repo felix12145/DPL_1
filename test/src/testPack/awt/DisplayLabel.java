@@ -22,10 +22,17 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 package edu.hws.jcm.awt;
 
 import java.awt.*;
 import edu.hws.jcm.data.*;
+=======
+package testPack.awt;
+
+import java.awt.*;
+import testPack.data.*;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 /**
  * A DisplayLabel is a label that can display numbers embedded in

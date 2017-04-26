@@ -22,9 +22,15 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 package edu.hws.jcm.awt;
 
 import edu.hws.jcm.data.*;
+=======
+package testPack.awt;
+
+import testPack.data.*;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 import java.awt.*;
 import java.awt.event.*;
 

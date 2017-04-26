@@ -22,7 +22,11 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 package edu.hws.jcm.awt;
+=======
+package testPack.awt;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 /**
  * An InputObject represents some sort of value that can be changed

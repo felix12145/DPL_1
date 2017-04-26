@@ -22,9 +22,15 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 package testPack.draw;
 
 import testPack.data.*;
+=======
+package edu.hws.jcm.draw;
+
+import edu.hws.jcm.data.*;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 /**
  * A Crosshair is a small cross, 15 pixels wide and high, that is drawn in

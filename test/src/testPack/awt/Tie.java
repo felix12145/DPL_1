@@ -22,10 +22,17 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 package edu.hws.jcm.awt;
 
 import java.util.Vector;
 import edu.hws.jcm.data.Value;
+=======
+package testPack.awt;
+
+import java.util.Vector;
+import testPack.data.Value;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 /**
  * A Tie associates several Tieable objects.  When the check() mehtod of the

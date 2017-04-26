@@ -22,7 +22,11 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 package testPack.draw;
+=======
+package edu.hws.jcm.draw;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 import edu.hws.jcm.awt.*;
 import java.util.StringTokenizer;

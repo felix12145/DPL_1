@@ -12,6 +12,7 @@
 *                                                                        *
 *************************************************************************/
 
+<<<<<<< HEAD
 
 
 import java.applet.Applet;
@@ -33,6 +34,17 @@ import testPack.awt.VariableInput;
 import testPack.data.ParseError;
 import testPack.data.Parser;
 import testPack.functions.SummationParser;
+=======
+import testPack.awt.*;
+import testPack.data.*;
+import testPack.draw.*;
+import testPack.functions.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.StringTokenizer;
+import java.applet.Applet;
+>>>>>>> branch 'master' of ssh://git@github.com/felix12145/DPL_1_1.0.git
 
 /**
  * An Evaluator applet lets the user enter the values of one or more variables,
