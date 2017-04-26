@@ -33,7 +33,7 @@ public class CartesianPlot extends Application{
 	    public void start(final Stage stage) {
 	        Axes axes = new Axes(
 	                800, 800,
-	                -10, 10, 0.5,
+	                -9, 10, 0.5,
 	                -10, 10, 0.5
 	        );
 
