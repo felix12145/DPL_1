@@ -8,6 +8,8 @@ sample plot
 
 The code below is not meant to be a general purpose function plotter, but instead just provides an illustrative sample of how you might create one.
 */
+
+
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.*;
