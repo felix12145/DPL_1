@@ -1,4 +1,5 @@
-package Graph;
+package FX;
+
 
 
 
@@ -11,6 +12,7 @@ import javafx.geometry.*;
 	import javafx.scene.Scene;
 	import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 	import javafx.scene.paint.Color;
 	import javafx.scene.shape.*;
@@ -34,7 +36,7 @@ import javafx.stage.Stage;
 	    	
 	    	 primaryStage.setTitle("DPL1");
 	    	    primaryStage.show();
-	    	    
+	    	    ScrollPane sp = new ScrollPane();
 	            GridPane grid = new GridPane();
 	            grid.setAlignment(Pos.CENTER);
 	            grid.setHgap(10);
@@ -75,9 +77,9 @@ import javafx.stage.Stage;
 	        );
 	        layout.setPadding(new Insets(20));
 	//        layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
-	        grid.add(layout, 1, 1);
-	        
-	        
+	        //grid.add(layout, 1, 1);
+	        sp.setContent(layout);
+	        grid.add(sp, 1,1);
 	 //       grid.setGridLinesVisible(true);
 	        grid.setVgap(5);
 	        grid.setHgap(30);
