@@ -1,52 +1,48 @@
+package Graph;
+
 
 
 	
+	import javafx.application.Application;
+	import javafx.beans.binding.Bindings;
+	import javafx.geometry.*;
+	import javafx.scene.Scene;
+	import javafx.scene.chart.NumberAxis;
+	import javafx.scene.layout.*;
+	import javafx.scene.paint.Color;
+	import javafx.scene.shape.*;
+	import javafx.stage.Stage;
 
-/*I'd advise using the Scene Graph and the built-in NumberAxis nodes rather than writing your own cartesian axis renderer using a Canvas.
+	import java.util.function.Function;
 
-sample plot
+	// Java 8 code
+	public class CartesianPlot
+	extends Application {
 
-The code below is not meant to be a general purpose function plotter, but instead just provides an illustrative sample of how you might create one.
-*/
-
-
-import javafx.application.Application;
-import javafx.beans.binding.Bindings;
-import javafx.geometry.*;
-import javafx.scene.Scene;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
-import javafx.stage.Stage;
-
-import java.util.function.Function;
-
-public class CartesianPlot extends Application{
-	
-	
-	 public static void main(String[] args) {
+	    public static void main(String[] args) {
 	        launch(args);
 	    }
 
 	    @Override
 	    public void start(final Stage stage) {
+	    	
+	    	
 	        Axes axes = new Axes(
-	                800, 800,
-	                -9, 10, 0.5,
-	                -10, 10, 0.5
+	                500, 500,
+	                0, 10, 0.5,
+	                0, 10, 0.5
 	        );
 
 	        Plot plot = new Plot(
-	                x -> .25 * (x + 4) * (x + 1) * (x - 2),
-	                -8, 8, 0.1,
+	                x -> x*x,
+	                0, 8, 0.1,
 	                axes
 	        );
 
 	        StackPane layout = new StackPane(
 	                plot
 	        );
-	        layout.setPadding(new Insets(20));
+	        layout.setPadding(new Insets(50));
 	        layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
 
 	        stage.setTitle("y = \u00BC(x+4)(x+1)(x-2)");
@@ -71,7 +67,7 @@ public class CartesianPlot extends Application{
 	            xAxis.setSide(Side.BOTTOM);
 	            xAxis.setMinorTickVisible(false);
 	            xAxis.setPrefWidth(width);
-	            xAxis.setLayoutY(height / 2);
+	            xAxis.setLayoutY(height);
 
 	            yAxis = new NumberAxis(yLow, yHi, yTickUnit);
 	            yAxis.setSide(Side.LEFT);
@@ -79,7 +75,7 @@ public class CartesianPlot extends Application{
 	            yAxis.setPrefHeight(height);
 	            yAxis.layoutXProperty().bind(
 	                Bindings.subtract(
-	                    (width / 2) + 1,
+	                    (0) + 1,
 	                    yAxis.widthProperty()
 	                )
 	            );
@@ -144,7 +140,7 @@ public class CartesianPlot extends Application{
 	        }
 
 	        private double mapX(double x, Axes axes) {
-	            double tx = axes.getPrefWidth() / 2;
+	            double tx =0;
 	            double sx = axes.getPrefWidth() / 
 	               (axes.getXAxis().getUpperBound() - 
 	                axes.getXAxis().getLowerBound());
@@ -153,7 +149,7 @@ public class CartesianPlot extends Application{
 	        }
 
 	        private double mapY(double y, Axes axes) {
-	            double ty = axes.getPrefHeight() / 2;
+	            double ty = axes.getPrefHeight();
 	            double sy = axes.getPrefHeight() / 
 	                (axes.getYAxis().getUpperBound() - 
 	                 axes.getYAxis().getLowerBound());
@@ -161,6 +157,7 @@ public class CartesianPlot extends Application{
 	            return -y * sy + ty;
 	        }
 	    }
-	
+	}
 
-}
+
+	
