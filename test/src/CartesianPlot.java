@@ -5,13 +5,19 @@ package Graph;
 	
 	import javafx.application.Application;
 	import javafx.beans.binding.Bindings;
-	import javafx.geometry.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.*;
 	import javafx.scene.Scene;
 	import javafx.scene.chart.NumberAxis;
-	import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
 	import javafx.scene.paint.Color;
 	import javafx.scene.shape.*;
-	import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 	import java.util.function.Function;
 
@@ -24,13 +30,32 @@ package Graph;
 	    }
 
 	    @Override
-	    public void start(final Stage stage) {
+	    public void start(Stage primaryStage) {
 	    	
-	    	
+	    	 primaryStage.setTitle("DPL1");
+	    	    primaryStage.show();
+	    	    
+	            GridPane grid = new GridPane();
+	            grid.setAlignment(Pos.CENTER);
+	            grid.setHgap(10);
+	            grid.setVgap(10);
+	            grid.setPadding(new Insets(50, 50, 50, 50));
+
+	            
+	            
+	            
+	            Scene scene = new Scene(grid, 800, 800);
+	            primaryStage.setScene(scene);
+	    	    
+	            
+	            Text scenetitle = new Text("Welcome");
+	            scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+	            grid.add(scenetitle, 0, 0, 2, 1);
+	            
 	        Axes axes = new Axes(
 	                500, 500,
-	                0, 10, 0.5,
-	                0, 10, 0.5
+	                0, 10, 1,
+	                0, 10, 1
 	        );
 
 	        Plot plot = new Plot(
@@ -38,16 +63,40 @@ package Graph;
 	                0, 8, 0.1,
 	                axes
 	        );
-
-	        StackPane layout = new StackPane(
-	                plot
+	        
+	        Plot plot1 = new Plot(
+	                x -> -x + 10,
+	                0, 8, 0.1,
+	                axes
 	        );
-	        layout.setPadding(new Insets(50));
-	        layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
 
-	        stage.setTitle("y = \u00BC(x+4)(x+1)(x-2)");
-	        stage.setScene(new Scene(layout, Color.rgb(35, 39, 50)));
-	        stage.show();
+	        Pane layout = new Pane(
+	                plot,plot1
+	        );
+	        layout.setPadding(new Insets(20));
+	//        layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
+	        grid.add(layout, 1, 1);
+	        
+	        
+	 //       grid.setGridLinesVisible(true);
+	        grid.setVgap(5);
+	        grid.setHgap(30);
+	        Button btn = new Button();
+	        btn.setText("send");
+	        btn.setPrefWidth(100);
+	                btn.setOnAction(new EventHandler<ActionEvent>(){
+	                public void handle(ActionEvent event)
+	                {
+	                   
+	                }
+	                
+	                });
+	        grid.add(btn,0,1);
+	        
+	        
+	       // primaryStage.setTitle("y = \u00BC(x+4)(x+1)(x-2)");
+	       // primaryStage.setScene(new Scene(layout, Color.rgb(35, 39, 50)));
+	        primaryStage.show();
 	    }
 
 	    class Axes extends Pane {
