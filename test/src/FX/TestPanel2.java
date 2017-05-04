@@ -1,5 +1,7 @@
 package FX;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 import FX.CartesianPlot.Axes;
@@ -35,6 +37,9 @@ import javafx.stage.Stage;
 
 public class TestPanel2 extends Application {
 
+	private List<String> valueList = new ArrayList<String>();
+	private Enum a;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -46,7 +51,7 @@ public class TestPanel2 extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		GridPane g = new GridPane();
-
+		
 		primaryStage.setTitle("DPL1");
 		primaryStage.show();
 		g.setAlignment(Pos.CENTER);
@@ -56,13 +61,13 @@ public class TestPanel2 extends Application {
 
 		/**************************************************************/
 		ScrollPane sp = new ScrollPane();
-		 
+		ScrollPane sp2 = new ScrollPane(); 
 		 
 		 
 	     Axes axes = new Axes(
 	                500, 500,
-	                0, 10, 1,
-	                0, 10, 1
+	                0, 50, 1,
+	                0, 50, 1
 	        );
 
 	        Plot plot = new Plot(
@@ -80,13 +85,24 @@ public class TestPanel2 extends Application {
 	        Pane layout = new Pane(
 	                plot,plot1
 	        );
-	        layout.setPadding(new Insets(20));
-	//        layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
+	        Pane layoutContainer=new Pane(layout);
+	        
+	        layoutContainer.setPadding(new Insets(50,50,50,50));
+	      Label r = new Label();
+	 
+//	        r.setText("    ");
+	  
+	        layout.setPadding(new Insets(20,20,20,20));
+	     //   layout.setPrefWidth(800);
+	     //   layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
+	
 	        //grid.add(layout, 1, 1);
-	        sp.setContent(layout);
+//	        sp.setContent(layoutContainer);
+//	        sp.setPadding(new Insets(20,20,20,20));
 		 
-		  g.add(sp, 7, 0, 1, 13);
-		 
+		  g.add(r, 6, 0, 1, 13);
+	
+		  g.add(layout, 7, 0, 1, 13);
 		 
 		 /**************************************************************/
 		ObservableList<String> options = FXCollections.observableArrayList("MIN", "MAX"
@@ -112,8 +128,10 @@ public class TestPanel2 extends Application {
 		l.setText("z(x,y)= ");
 		l2.setText("x + ");
 		l3.setText("y -> ");
-		// g.setGridLinesVisible(true);
-		Scene scene = new Scene(g, 1600, 800);
+	 g.setGridLinesVisible(true);
+		ScrollPane spStart= new ScrollPane();
+		spStart.setContent(g);
+		Scene scene = new Scene(spStart, 1200, 800);
 		primaryStage.setScene(scene);
 		
 		Label l4= new Label();
@@ -168,15 +186,17 @@ public class TestPanel2 extends Application {
 						alert.showAndWait();
 						}
 						else{
-				System.out.println("TBox1: " + t.getText());
-				System.out.println("TBox2 : " + t2.getText());
+				System.out.println("TBox1: " + t.getText().toString());
+				System.out.println("TBox2 : " + t2.getText().toString());
 				System.out.println("CBox1 : " + c1.getValue().toString());
 				System.out.println("CBox2 : " + c2.getValue().toString() );
+
 				
 				GridPane g2 = proceedRestricts(t.getText(),t2.getText(),c1.getValue().toString(),c2.getValue().toString(),g);
-				
-				
-				scene.setRoot(g2);
+				GridPane g3 =proceesOutput(t.getText().toString(), t2.getText().toString(),c1.getValue().toString(),  c2.getValue().toString(),  g2);
+				sp2.setContent(g3);
+			
+				scene.setRoot(sp2);
 			
 				
 			primaryStage.show();
@@ -229,6 +249,71 @@ public class TestPanel2 extends Application {
 				g.add(b,5,Integer.parseInt(c2)+2);
 			return g;
 		}
+	
+	
+	public GridPane proceesOutput(String t, String t2, String c1, String c2, GridPane g)
+	{
+	int width=40;
+
+	
+	Label nb  = new Label();
+	Label nb1 = new Label();
+	Label nb2 = new Label();
+	Label nbValue  = new Label();
+	Label nbValue2 = new Label();
+	Label nbErg2 = new Label();
+	nb.setText("test value");
+	
+//	String operator;
+//	
+//	if(c1=="MAX") operator="<=";
+//	else operator = ">=";
+//	nb.setText("NB: ");
+//	nbValue.setText("test");
+//	nb1.setText("x + ");
+//	nbValue2.setText("test");
+//	nb2.setText("y "+ operator);
+//	nbErg2.setText("test");
+	
+//	for(int i=0;i<Integer.parseInt(c2);i++)
+//		{
+//			
+//			Label nb  = new Label();
+//			Label nb1 = new Label();
+//			Label nb2 = new Label();
+//			Label nbValue  = new Label();
+//			Label nbValue2 = new Label();
+//			Label nbErg2 = new Label();
+//			
+//			
+//			String operator;
+//			
+//			if(c1=="MAX") operator="<=";
+//			else operator = ">=";
+//			nb.setText("NB"+i+": ");
+//			nbValue.setText(t);
+//			nb1.setText("x + ");
+//			nbValue2.setText(t2);
+//			nb2.setText("y "+ operator);
+//			nbErg2.setText(c1);
+//			
+//			g.add(nb,0,1+i);
+//			g.add(nbValue,1, 1+i);
+//			g.add(nb1,2, 1+i);
+//			g.add(nbValue2,3, 1+i);
+//			g.add(nb2,4,1+i);
+//			g.add(nbErg2,5, 1+i);
+//			
+//		}
+	Label b = new Label();
+	b.setText("Sie haben eingegeben: ");
+	b.setPrefWidth(200);
+			g.add(b,0,13,13,1);
+			g.add(nb,0,14,14,1);
+		return g;
+	}
+	
+	
 	 class Axes extends Pane {
 	        private NumberAxis xAxis;
 	        private NumberAxis yAxis;
@@ -241,20 +326,29 @@ public class TestPanel2 extends Application {
 	            setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
 	            setPrefSize(width, height);
 	            setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
-
+ int bindValue=25;
 	            xAxis = new NumberAxis(xLow, xHi, xTickUnit);
 	            xAxis.setSide(Side.BOTTOM);
 	            xAxis.setMinorTickVisible(false);
 	            xAxis.setPrefWidth(width);
 	            xAxis.setLayoutY(height);
-
+	         
+//	          xAxis.layoutXProperty().bind(
+//		                Bindings.subtract(
+//		                    (bindValue) + 1,
+//		                    xAxis.widthProperty()
+//		                )
+//		            );  
+	           
+	            
+	            
 	            yAxis = new NumberAxis(yLow, yHi, yTickUnit);
 	            yAxis.setSide(Side.LEFT);
 	            yAxis.setMinorTickVisible(false);
 	            yAxis.setPrefHeight(height);
 	            yAxis.layoutXProperty().bind(
 	                Bindings.subtract(
-	                    (0) + 1,
+	                    0 + 1,
 	                    yAxis.widthProperty()
 	                )
 	            );
@@ -333,7 +427,9 @@ public class TestPanel2 extends Application {
 	                (axes.getYAxis().getUpperBound() - 
 	                 axes.getYAxis().getLowerBound());
 
+	            
 	            return -y * sy + ty;
 	        }
 	    }
+	    
 }
