@@ -39,6 +39,7 @@ public class testPati extends Application {
 		// TODO Auto-generated method stub
 		private List<String> valueList = new ArrayList<String>();
 		private Enum a;
+		//private List<Double> inputValuesList = new ArrayList<Double>();
 		
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
@@ -62,48 +63,15 @@ public class testPati extends Application {
 			ScrollPane sp2 = new ScrollPane(); 
 			 
 			 /*Achsengroeßen: Axes(x_Laenge, y_Hoehe, Beginn der x-Achse, Wertebereich x-Achse, Schrittweite der x-Achse,
-			  *  Beginn der y-Achse, Wertebereiche y-Achse,Schrittweite der y-Achse)*/
+			  *  Beginn der y-Achse, Wertebereiche y-Achse, Schrittweite der y-Achse)*/
 		     Axes axes = new Axes(
 		                300, 400,
 		                0, 10, 1,
 		                0, 15, 1
 		        );
 		     
-		     /*die Plots zeichnen die Graphen*/
-		     
-		        Plot graph1 = new Plot(
-		                x -> x+2,
-		                0, 8, 0.1,
-		                axes
-		        );
-		        
-		        Plot graph2 = new Plot(
-		                x -> 0.0,
-		                0, 8, 0.1,
-		               axes
-		        );
-
-		        Pane layout = new Pane(
-		                graph1, graph2
-		        );
-		        Pane layoutContainer=new Pane(layout);
-		        
-		        layoutContainer.setPadding(new Insets(50,50,50,50));
-		        Label r = new Label();
-		 
-		        r.setText("      ");
-		  
-		        layout.setPadding(new Insets(20,20,20,20));
-		     /*   layout.setPrefWidth(800);
-		       layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
-		
-		        //grid.add(layout, 1, 1);
-		        sp.setContent(layoutContainer);
-		        sp.setPadding(new Insets(20,20,20,20));
-			 */
-			  g.add(r, 6, 0, 1, 13);
-		
-			  g.add(layout, 7, 0, 1, 13);
+		     	        
+		        	    
 			 
 			/**************************************************************/
 		        
@@ -157,6 +125,12 @@ public class testPati extends Application {
 			
 			proceed.setText("Proceed");
 			proceed.setPrefWidth(80);
+			
+			Button draw = new Button();
+			draw.setText("Draw");
+			draw.setPrefWidth(80);
+			
+			
 			g.add(zielfunktion, 0, 0);
 			g.add(wertfuerX, 1, 0);
 			g.add(x, 2, 0);
@@ -166,18 +140,21 @@ public class testPati extends Application {
 			g.add(textAnzahlRestriktionen, 0,1);
 			g.add(anzahlRestriktionen, 1,1);
 			g.add(proceed,5,1);
+			g.add(draw, 5, 5);
 			
 			primaryStage.show();
 		
 			
-			
+			/*Behandelt den Ausnahmefaelle, falls eine Comboxbox nicht gesetzt wurde*/
 			proceed.setOnAction(new EventHandler<ActionEvent>()
 			{
 			
 				public void handle(ActionEvent event)
 				{
 					
+					//inputValuesList.add(Double.parseDouble(wertfuerX.getText()));
 					
+					/*wenn mix/max nicht ausgewaehlt wurde*/
 					if(min_max.getSelectionModel().isEmpty()){System.out.println("Wählen Sie MIN oder MAX");
 					
 					Alert alert = new Alert(AlertType.INFORMATION);
@@ -188,6 +165,7 @@ public class testPati extends Application {
 					
 					}
 						else{
+							/*wenn die Anzahl der Restriktionen nicht ausgewaehlt wurde*/
 							if(anzahlRestriktionen.getSelectionModel().isEmpty()){System.out.println("Wählen Sie die Anzahl der Restriktionen ");
 							
 							Alert alert = new Alert(AlertType.INFORMATION);
@@ -218,7 +196,62 @@ public class testPati extends Application {
 					
 				
 			});
-			}
+		
+			draw.setOnAction(new EventHandler<ActionEvent>() {
+				
+				
+				public void handle(ActionEvent event) {
+					
+					if(wertfuerX.getText().isEmpty() || wertfuerY.getText().isEmpty())
+					{System.out.println("Es wurde ein leerer Wert bei X oder Y gefunden");
+					
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information Dialog");
+					alert.setHeaderText("Es wurde ein leerer Wert bei X oder Y gefunden");
+					
+					alert.showAndWait();
+					
+					}
+					
+					else {
+						
+					     /*die Plots zeichnen die Graphen*/
+					     
+				        
+				        Plot graph1 = new Plot(
+				                x -> Double.parseDouble(wertfuerX.getText())*x,
+				                0, 8, 0.1,
+				               axes
+				        );
+						
+				
+				        Pane layout = new Pane(graph1);
+				
+				        Pane layoutContainer=new Pane(layout);
+		     
+		                layoutContainer.setPadding(new Insets(50,50,50,50));
+		                Label r = new Label();
+
+		                r.setText("    ");
+		                layout.setPadding(new Insets(20,20,20,20));
+		   		     /*layout.setPrefWidth(800);
+		 		       layout.setStyle("-fx-background-color: rgb(35, 39, 50);");
+		 		
+		 		        //grid.add(layout, 1, 1);
+		 		        sp.setContent(layoutContainer);
+		 		        sp.setPadding(new Insets(20,20,20,20));
+		 			 */
+		                
+		                g.add(r, 6, 0, 1, 13);
+		        		
+		  			    g.add(layout, 7, 0, 1, 13);
+		  			 
+				}}
+			});
+			}		
+		
+		
+		
 			
 		
 		public GridPane proceedRestricts(String wertfuerX, String wertfuerY, String min_max, String anzahlRestriktionen, GridPane g)
@@ -267,13 +300,13 @@ public class testPati extends Application {
 		int width=40;
 
 		
-		Label nb  = new Label();
-		Label nb1 = new Label();
+		Label testvalue  = new Label();
+		/*Label nb1 = new Label();
 		Label nb2 = new Label();
 		Label nbValue  = new Label();
 		Label nbValue2 = new Label();
-		Label nbErg2 = new Label();
-		nb.setText("test value");
+		Label nbErg2 = new Label();*/
+		testvalue.setText("test value");
 		
 //		String operator;
 	//	
@@ -316,11 +349,11 @@ public class testPati extends Application {
 //				g.add(nbErg2,5, 1+i);
 //				
 //			}
-		Label b = new Label();
-		b.setText("Sie haben eingegeben: ");
-		b.setPrefWidth(200);
-				g.add(b,0,13,13,1);
-				g.add(nb,0,14,14,1);
+		Label review = new Label();
+		review.setText("Sie haben eingegeben: ");
+		review.setPrefWidth(200);
+				g.add(review,0,13,13,1);
+				g.add(testvalue,0,14,14,1);
 			return g;
 		}
 		
