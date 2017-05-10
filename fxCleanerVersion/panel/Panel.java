@@ -1,6 +1,9 @@
 package panel;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import constructors.InOutPanels;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,6 +26,9 @@ import javafx.stage.Stage;
 
 public class Panel extends Application{
 
+		public static List<Object> restrictList = new ArrayList<Object>();
+		public static List<TextField> restrictValues = new ArrayList<TextField>();
+		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -132,6 +138,11 @@ public class Panel extends Application{
 			generateInputButton.setText("Proceed");
 			generateInputButton.setPrefWidth(80);
 			
+			Button fireButton = new Button();
+			fireButton.setText("Calculate");
+			fireButton.setPrefWidth(60);
+			
+			
 			firstGrid.add(zFlabel1, 0, 0);
 			firstGrid.add(zFtext1, 1, 0);
 			firstGrid.add(zFlabel2, 2, 0);
@@ -152,6 +163,8 @@ public class Panel extends Application{
 			
 					if(minMaxComboBox.getSelectionModel().isEmpty()){
 					
+						restrictList.add(restrictsComboBox.getValue());
+						restrictList.add(minMaxComboBox.getValue());
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText("Wählen Sie MIN oder MAX");
@@ -177,6 +190,7 @@ public class Panel extends Application{
 					InOutPanels InOut = new InOutPanels();
 										
 					GridPane g2 = InOut.proceedRestricts(minMaxComboBox.getValue().toString(),restrictsComboBox.getValue().toString(),firstGrid);
+					g2.add(fireButton, 5, restrictsComboBox.getValue() + 2);
 					GridPane g3 = InOut.proceesOutput(minMaxComboBox.getValue().toString(),  restrictsComboBox.getValue().toString(),  g2);
 
 				
@@ -188,6 +202,27 @@ public class Panel extends Application{
 				}
 			}
 		});
+	
+			fireButton.setOnAction(new EventHandler<ActionEvent>()
+			{
+			
+				public void handle(ActionEvent event)
+				{
+					for(int i=0;i<restrictValues.size();i++ )
+					{
+						restrictList.add(restrictValues.get(i).getText());;
+						
+					}
+					
+					for(int i=0;i<restrictList.size();i++ )
+					{
+						System.out.println(restrictList.get(i).toString());
+						
+					}
+				}}
+		);
 	}
+	
+	
 	
 }

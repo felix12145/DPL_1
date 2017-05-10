@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import panel.Panel;
 
 public class InOutPanels {
 
@@ -20,6 +21,11 @@ public class InOutPanels {
 			TextField factorA2 = new TextField();
 			TextField border = new TextField();
 
+			
+			Panel.restrictValues.add(factorA1);
+			Panel.restrictValues.add(factorA2);
+			Panel.restrictValues.add(border);
+			
 			factorA1.setPrefWidth(width);
 			factorA2.setPrefWidth(width);
 			border.setPrefWidth(width);
@@ -42,10 +48,7 @@ public class InOutPanels {
 
 		}
 
-		Button fireButton = new Button();
-		fireButton.setText("Calculate");
-		fireButton.setPrefWidth(60);
-		grid.add(fireButton, 5, Integer.parseInt(restrictsComboBox) + 2);
+		
 		return grid;
 	}
 
