@@ -4,11 +4,7 @@ package panel;
 import java.util.ArrayList;
 import java.util.List;
 
-import constructors.CalculateRestrictFunction;
 import constructors.InOutPanels;
-import constructors.Plot;
-import coordinateAxesTics.Ranges;
-import coordinateAxesTics.Tics;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,8 +28,7 @@ public class Panel extends Application{
 
 		public static List<Object> restrictList = new ArrayList<Object>();
 		public static List<TextField> restrictValues = new ArrayList<TextField>();
-		GridPane uniGrid;
-		 Pane firstGraph;
+		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
@@ -44,7 +39,6 @@ public class Panel extends Application{
 		// TODO Auto-generated method stub
 		
 		GridPane firstGrid = new GridPane();
-		
 		ScrollPane firstScrollPane = new ScrollPane();
 		
 		
@@ -56,30 +50,27 @@ public class Panel extends Application{
 		
 		primaryStage.setTitle("Lineare Optimierung - Graphisch");
 		primaryStage.show();
-		Tics defaultTic = new Tics(1);
-		Ranges defaultRange = new Ranges(10);
 		
 		 constructors.Axes axes = new constructors.Axes(
 	                500, 500,
-	                0, defaultRange.getRange(), defaultTic.getTic(),
-	                0, defaultRange.getRange(), defaultTic.getTic()
+	                0, 50, 1,
+	                0, 50, 1
 	        );
 		 
 		 constructors.Plot plot = new constructors.Plot(
+	                x -> x*x,
+	                0, 8, 0.1,
+	                axes
+	        );
+	        
+	     constructors.Plot plot1 = new constructors.Plot(
 	                x -> 0.0,
 	                0, 8, 0.1,
 	                axes
 	        );
-		 plot.setC();
 	        
-//	     constructors.Plot plot1 = new constructors.Plot(
-//	                x -> 0.0,
-//	                0, 8, 0.1,
-//	                axes
-//	        );
-	        
-	         firstGraph = new Pane(
-	                plot
+	        Pane firstGraph = new Pane(
+	                plot,plot1
 	        );
 	        
 	        Pane graphContainer=new Pane(firstGraph); 
@@ -127,7 +118,7 @@ public class Panel extends Application{
 			
 			
 			
-			firstGrid.setGridLinesVisible(true);		// zum Testen
+//			firstGrid.setGridLinesVisible(true);		// zum Testen
 			
 			
 			
@@ -169,13 +160,11 @@ public class Panel extends Application{
 			
 				public void handle(ActionEvent event)
 				{
-					restrictList.add(zFtext1.getText());
-					restrictList.add(zFtext2.getText());
-					restrictList.add(restrictsComboBox.getValue());
-					restrictList.add(minMaxComboBox.getValue());
+			
 					if(minMaxComboBox.getSelectionModel().isEmpty()){
 					
-						
+						restrictList.add(restrictsComboBox.getValue());
+						restrictList.add(minMaxComboBox.getValue());
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText("Wählen Sie MIN oder MAX");
@@ -201,12 +190,11 @@ public class Panel extends Application{
 					InOutPanels InOut = new InOutPanels();
 										
 					GridPane g2 = InOut.proceedRestricts(minMaxComboBox.getValue().toString(),restrictsComboBox.getValue().toString(),firstGrid);
-					
 					g2.add(fireButton, 5, restrictsComboBox.getValue() + 2);
 					GridPane g3 = InOut.proceesOutput(minMaxComboBox.getValue().toString(),  restrictsComboBox.getValue().toString(),  g2);
-					uniGrid=g3;
+
 				
-					firstScrollPane.setContent(uniGrid);
+					firstScrollPane.setContent(g3);
 					scene.setRoot(firstScrollPane);
 					primaryStage.show();
 						
@@ -228,51 +216,11 @@ public class Panel extends Application{
 					
 					for(int i=0;i<restrictList.size();i++ )
 					{
-						System.out.println("restrictlist[" +i+"]= "+restrictList.get(i).toString());
+						System.out.println(restrictList.get(i).toString());
 						
 					}
-					CalculateRestrictFunction cRf = new CalculateRestrictFunction(Panel.restrictList);
-					cRf.calculate();
-					
-					
-					constructors.Axes axes = new constructors.Axes(
-			                500, 500,
-			                0, defaultRange.getRange(), defaultTic.getTic(),
-			                0, defaultRange.getRange(), defaultTic.getTic()
-			        );
-					
-					constructors.Plot plot1 = new constructors.Plot(
-			                x -> cRf.getFactor1()*x+cRf.getFactor2(),
-			                0, 8, 0.1,
-			                axes
-			        );	
-					 firstGraph = new Pane(
-				                plot1
-				        );
-				        
-				        Pane graphContainer=new Pane(firstGraph); 
-				        graphContainer.setPadding(new Insets(50,50,50,50));
-				        
-				        Label placeHolderLabel = new Label();
-				        placeHolderLabel.setText("    ");
-				  	  
-				        firstGraph.setPadding(new Insets(20,20,20,20));
-				        
-				        firstGrid.add(placeHolderLabel, 6, 0);
-				        firstGraph.getChildren().remove(firstGraph);
-				        firstGrid.add(firstGraph, 7, 0, 1, 13);
-					
-					
-			        	
-					
-				}
-				
-				
-				
-				
-			}
+				}}
 		);
-			
 	}
 	
 	
