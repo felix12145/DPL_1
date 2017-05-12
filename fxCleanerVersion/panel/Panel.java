@@ -4,7 +4,7 @@ package panel;
 import java.util.ArrayList;
 import java.util.List;
 
-import constructors.CalculateRestrictFunction;
+import constructors.Axes;
 import constructors.InOutPanels;
 import constructors.Plot;
 import coordinateAxesTics.Ranges;
@@ -18,12 +18,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -59,13 +59,13 @@ public class Panel extends Application{
 		Tics defaultTic = new Tics(1);
 		Ranges defaultRange = new Ranges(10);
 		
-		 constructors.Axes axes = new constructors.Axes(
+		 Axes axes = new Axes(
 	                500, 500,
 	                0, defaultRange.getRange(), defaultTic.getTic(),
 	                0, defaultRange.getRange(), defaultTic.getTic()
 	        );
 		 
-		 constructors.Plot plot = new constructors.Plot(
+		 Plot plot = new Plot(
 	                x -> 0.0,
 	                0, 8, 0.1,
 	                axes
@@ -231,7 +231,7 @@ public class Panel extends Application{
 						System.out.println("restrictlist[" +i+"]= "+restrictList.get(i).toString());
 						
 					}
-					CalculateRestrictFunction cRf = new CalculateRestrictFunction(Panel.restrictList);
+					constructors.CalculateRestrictFunction cRf = new constructors.CalculateRestrictFunction(Panel.restrictList);
 					cRf.calculate();
 					
 					
@@ -241,7 +241,7 @@ public class Panel extends Application{
 			                0, defaultRange.getRange(), defaultTic.getTic()
 			        );
 					
-					constructors.Plot plot1 = new constructors.Plot(
+					Plot plot1 = new Plot(
 			                x -> cRf.getFactor1()*x+cRf.getFactor2(),
 			                0, 8, 0.1,
 			                axes

@@ -1,4 +1,5 @@
 package constructors;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +7,7 @@ public class CalculateRestrictFunction {
 
 	double factor1, factor2, border;
 	int resticts;
+	
 	
 	public CalculateRestrictFunction(List<Object> restrictList)
 	{
