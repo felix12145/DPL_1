@@ -7,7 +7,7 @@ public class CalculateRestrictFunction {
 
 	double factor1, factor2, border;
 	int resticts;
-	
+	int resticts2;
 	
 	public CalculateRestrictFunction(List<Object> restrictList)
 	{
