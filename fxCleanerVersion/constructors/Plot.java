@@ -2,17 +2,33 @@ package constructors;
 
 import java.util.function.Function;
 
+import coordinateAxesTics.ColorEnum;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 
 public class Plot extends Pane {
+	
+	Color c;
+	
+	public Color getC() {
+		return c;
+	}
+
+	public void setC() {
+	
+		Color.ORANGE.deriveColor(0, 1, 1, 0.6);
+		this.c = Color.ORANGE.deriveColor(0, 1, 1, 0.6);
+	}
+
 	public Plot(Function<Double, Double> f, double xMin, double xMax, double xInc, Axes axes) {
 		Path path = new Path();
 		path.setStroke(Color.ORANGE.deriveColor(0, 1, 1, 0.6));
+//		path.setStroke(this.getC());
 		path.setStrokeWidth(2);
 
 		path.setClip(new Rectangle(0, 0, axes.getPrefWidth(), axes.getPrefHeight()));
