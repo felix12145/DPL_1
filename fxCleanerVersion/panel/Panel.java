@@ -127,7 +127,7 @@ public class Panel extends Application{
 			
 			
 			
-			firstGrid.setGridLinesVisible(true);		// zum Testen
+			firstGrid.setGridLinesVisible(false);		// zum Testen
 			
 			
 			
@@ -232,7 +232,7 @@ public class Panel extends Application{
 						
 					}
 					constructors.CalculateRestrictFunction cRf = new constructors.CalculateRestrictFunction(Panel.restrictList);
-					cRf.calculate();
+					cRf.calculate(Panel.restrictList);
 					
 					
 					constructors.Axes axes = new constructors.Axes(
