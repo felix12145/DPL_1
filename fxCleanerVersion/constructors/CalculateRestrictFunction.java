@@ -8,7 +8,7 @@ public class CalculateRestrictFunction {
 	double factor1, factor2, border;
 	int resticts;
 	
-	
+	// halllooo
 	public CalculateRestrictFunction(List<Object> restrictList)
 	{
 		factor1= Double.parseDouble(restrictList.get(4).toString());
