@@ -39,12 +39,12 @@ public class InOutPanels {
 			factorA1Label.setText("x + ");
 			factprA2Label.setText("y " + operator);
 
-			grid.add(restrictionNrLabel, 0, 2 + i);
-			grid.add(factorA1, 1, 2 + i);
-			grid.add(factorA1Label, 2, 2 + i);
-			grid.add(factorA2, 3, 2 + i);
-			grid.add(factprA2Label, 4, 2 + i);
-			grid.add(border, 5, 2 + i);
+			grid.add(restrictionNrLabel, 0, 2 + i+Panel.fR);
+			grid.add(factorA1, 1, 2 + i+Panel.fR);
+			grid.add(factorA1Label, 2, 2 + i+Panel.fR);
+			grid.add(factorA2, 3, 2 + i+Panel.fR);
+			grid.add(factprA2Label, 4, 2 + i+Panel.fR);
+			grid.add(border, 5, 2 + i+Panel.fR);
 
 		}
 
