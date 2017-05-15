@@ -3,48 +3,80 @@ package constructors;
 import java.util.ArrayList;
 import java.util.List;
 
+import coordinateAxesTics.Ranges;
+import coordinateAxesTics.Tics;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import panel.Panel;
+
 public class CalculateRestrictFunction {
 
 	double factor1, factor2, border;
-	double wertbeiX, wertbeiY, ergebnis;
+	
+	double[] ergebnis;
 	int resticts;
 	int resticts2;
 	
-	public CalculateRestrictFunction(List<Object> restrictList)
-	{
-		factor1= Double.parseDouble(restrictList.get(4).toString());
-		factor2= Double.parseDouble(restrictList.get(5).toString());
-		border=Double.parseDouble(restrictList.get(6).toString());
+//	
+	
+	public List<Plot> getPlotList(List<Object> restrictList)
+		{
+		
+		List<Plot> plotList = new ArrayList<Plot>();
+		
+	System.out.println("restrictList.size()/3: "+restrictList.size()/3);
+	
+		List<Object> o = new ArrayList<Object>();
+		for(int i=0;i<Integer.parseInt(Panel.headList.get(2).toString());i++)
+				{
+			o.add(new Object());
+				}
+		int i=0;
+		for(Object a : o){
+		
 			
+			double wertbeiX= (-1)*Double.parseDouble(restrictList.get(i).toString())/Double.parseDouble(restrictList.get(i+1).toString());
+			System.out.println("wertbeiX["+i+"]: "+wertbeiX);
+			
+			System.out.println("a1,a2,c ["+i+"]"+Integer.parseInt(restrictList.get(i).toString())+","+Integer.parseInt(restrictList.get(i+1).toString())+","+Integer.parseInt(restrictList.get(i+2).toString()));
+			
+			double wertbeiY = Double.parseDouble(restrictList.get(i+2).toString())/Double.parseDouble(restrictList.get(i+1).toString());
+			System.out.println("wertbeiY["+i+"]: "+wertbeiY);
+		constructors.Axes axes = new constructors.Axes(
+                500, 500,
+                0, new Ranges(20).getRange(), new Tics(1).getTic(),
+                0, new Ranges(20).getRange(), new Tics(1).getTic()
+        );
+	if(restrictList.get(i+1).toString()=="0"){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText("y darf nicht 0 sein!");
+		alert.showAndWait();
 		
 	}
-	
-	public void calculate(List<Object> restrictList)
-	{
-		
-		for(int i=4; i<= (restrictList.size()-1);i=i+3){
-			wertbeiX = Double.parseDouble(restrictList.get(i).toString());
-			wertbeiY = Double.parseDouble(restrictList.get(i++).toString());
-			ergebnis = Double.parseDouble(restrictList.get(i+2).toString());
-			
-	
-		
-			
+//	else if(restrictList.get(i).toString()=="0" ||restrictList.get(i+2).toString()=="0" )
+//	{
+//		if(Double.parseDouble(restrictList.get(i+1).toString())<=0)
+//		{
+//			if(Double.parseDouble(restrictList.get(i).toString())<=0)
+//			{
+//				
+//			}
+//			else
+//			{
+//				
+//			}
+//		}
+//		else
+//	}
+		else{
+		plotList.add( new Plot(x -> wertbeiX*x + wertbeiY,0, 20, 0.1,axes,Panel.farben));
+		i+=3;
 		}
-		
-		
-		
-		double a1=(-1)*wertbeiX/wertbeiY;
-		double a2=ergebnis/wertbeiY;
-		wertbeiX=a1;
-		wertbeiY=a2;
-		
-		
+		}
+		return plotList;
 		
 	}
-	
-	
-	
 
 	public double getFactor1() {
 		return factor1;
