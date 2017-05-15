@@ -28,25 +28,44 @@ public class Plot extends Pane {
 
 	public Plot(Function<Double, Double> f, double xMin, double xMax, double xInc, Axes axes, int farben) {
 		Path path = new Path();
+		
+int stroke = 3;
+		OutColors oC = new OutColors();
 		if(Panel.farben==0){
-			path.setStroke(Color.WHITE.deriveColor(0, 1, 1, 0.6));
+			path.setStroke(Color.WHITE.deriveColor(0, 1, 3, 0.6));
 			Panel.farben++;
 		}
 		else if(Panel.farben==1)
 		{
-			path.setStroke(Color.DARKGRAY.deriveColor(0, 1, 1, 0.6));
+			path.setStroke(Color.BURLYWOOD.deriveColor(0, 1, stroke, 0.6));
 			Panel.farben++;
 		}
 		else if(Panel.farben==2)
 		{
-			path.setStroke(Color.GREENYELLOW.deriveColor(0, 1, 1, 0.6));
+			path.setStroke(Color.GREENYELLOW.deriveColor(0, 1, stroke, 0.6));
 			Panel.farben++;
 		}
-		else
+		else if(Panel.farben==3)
 		{
-			path.setStroke(Color.LIGHTSKYBLUE.deriveColor(0, 1, 1, 0.6));
+			path.setStroke(Color.LIGHTSKYBLUE.deriveColor(0, 1, stroke, 0.6));
 			Panel.farben++;	
 		}
+		else if(Panel.farben==4)
+		{
+			path.setStroke(Color.LIGHTSALMON.deriveColor(0, 1, stroke, 0.6));
+			Panel.farben++;	
+		}
+		else if(Panel.farben==5)
+		{
+			path.setStroke(Color.LIGHTBLUE.deriveColor(0, 1, stroke, 0.6));
+			Panel.farben++;	
+		}
+		else if(Panel.farben==6)
+		{
+			path.setStroke(Color.YELLOWGREEN.deriveColor(0, 1, stroke, 0.6));
+			Panel.farben++;	
+		}
+		
 		
 		
 //		path.setStroke(this.getC());

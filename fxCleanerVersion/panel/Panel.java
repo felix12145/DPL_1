@@ -6,6 +6,8 @@ import java.util.List;
 
 import constructors.Axes;
 import constructors.InOutPanels;
+import constructors.OutColors;
+import constructors.Output;
 import constructors.Plot;
 import coordinateAxesTics.Ranges;
 import coordinateAxesTics.Tics;
@@ -29,6 +31,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Panel extends Application{
@@ -37,6 +41,8 @@ public class Panel extends Application{
 		public static List<Object> headList = new ArrayList<Object>();				//new 
 		public static List<TextField> restrictValues = new ArrayList<TextField>();
 		public static int farben=0;
+		public static List<Label> restrictLabels= new ArrayList<Label>();
+	
 		GridPane uniGrid;
 		 Pane firstGraph;
 	public static void main(String[] args) {
@@ -77,11 +83,7 @@ public class Panel extends Application{
 	        );
 		 plot.setC();
 	        
-//	     constructors.Plot plot1 = new constructors.Plot(
-//	                x -> 0.0,
-//	                0, 8, 0.1,
-//	                axes
-//	        );
+	    
 	        
 	         firstGraph = new Pane(
 	                plot
@@ -100,7 +102,7 @@ public class Panel extends Application{
 	
 	
 			ObservableList<String> minMaxDropdown = FXCollections.observableArrayList("MIN", "MAX");
-			ObservableList<Integer> restrictsDropdown = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
+			ObservableList<Integer> restrictsDropdown = FXCollections.observableArrayList(1,2,3,4,5,6);
 
 			
 			Label zFlabel1 = new Label();
@@ -260,27 +262,13 @@ public class Panel extends Application{
 						
 					}
 					constructors.CalculateRestrictFunction cRf = new constructors.CalculateRestrictFunction();
-//					cRf.calculate(Panel.restrictList);
-//					
-//					
-//					constructors.Axes axes = new constructors.Axes(
-//			                500, 500,
-//			                0, defaultRange.getRange(), defaultTic.getTic(),
-//			                0, defaultRange.getRange(), defaultTic.getTic()
-//			        );
-//					
-//					Plot plot1 = new Plot(
-//			                x -> cRf.getFactor1()*x+cRf.getFactor2(),
-//			                0, 8, 0.1,
-//			                axes
-//			        );	
-//					
+					
 					
 					 firstGraph = new Pane();
 					 
 					 List <Plot> plotList=cRf.getPlotList(restrictList);
 				        firstGraph.getChildren().addAll(plotList);
-					 restrictList.clear();
+				
 				        Pane graphContainer=new Pane(firstGraph); 
 				        graphContainer.setPadding(new Insets(50,50,50,50));
 				        
@@ -292,19 +280,15 @@ public class Panel extends Application{
 				        firstGrid.add(placeHolderLabel, 6, 0);
 				        firstGraph.getChildren().remove(firstGraph);
 				        firstGrid.add(firstGraph, 7, fR, 1, 13);
-				
-					
-					
-			        	
-					
+				       
+						//output.setText(new Output().getOutput(new OutColors()));	
+				    	 restrictList.clear();
+				   
 				}
-				
-				
-				
 				
 			}
 		);
-			
+
 	}
 	
 	
